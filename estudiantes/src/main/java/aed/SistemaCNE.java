@@ -1,6 +1,12 @@
 package aed;
 public class SistemaCNE {
     // Completar atributos privados
+    private String[] _nombresPartidos;
+    private String[] _nombresDistritos;
+    private int[] _diputadosPorDistrito;
+    private int [] _ultimasMesasDistritos;
+
+
 
     public class VotosPartido{
         private int presidente;
@@ -11,23 +17,47 @@ public class SistemaCNE {
     }
 
     public SistemaCNE(String[] nombresDistritos, int[] diputadosPorDistrito, String[] nombresPartidos, int[] ultimasMesasDistritos) {
-        throw new UnsupportedOperationException("No implementada aun");
-    }
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        while (nombresPartidos[i]!= null){
+            _nombresPartidos[i]=nombresPartidos[i];
+            i ++;
+        }
+        while (nombresDistritos[j]!= null){
+            _diputadosPorDistrito[j]= diputadosPorDistrito[j];
+            _nombresDistritos[j]=nombresDistritos[j];
+            _ultimasMesasDistritos[j] = ultimasMesasDistritos[j];
+            j ++;
+        }
+     }
+
 
     public String nombrePartido(int idPartido) {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _nombresPartidos[idPartido];
     }
 
     public String nombreDistrito(int idDistrito) {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _nombresDistritos[idDistrito];
     }
 
     public int diputadosEnDisputa(int idDistrito) {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _diputadosPorDistrito[idDistrito] ;
     }
 
     public String distritoDeMesa(int idMesa) {
-        throw new UnsupportedOperationException("No implementada aun");
+        while (_ultimasMesasDistritos[k] != 0){
+            if(k == 0 && 0 <= idMesa < _ultimasMesasDistritos[k]){
+                return _nombresDistritos[k];
+            }else{
+                if((_ultimasMesasDistritos[k-1]<=idMesa) && (idMesa < _ultimasMesasDistritos[k])){
+                    return _nombresDistritos[k];
+                }else{
+                    i++;
+                }
+            }
+        };
     }
 
     public void registrarMesa(int idMesa, VotosPartido[] actaMesa) {
